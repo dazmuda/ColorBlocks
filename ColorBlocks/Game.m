@@ -37,37 +37,53 @@
 
 }
 
--(NSMutableArray*)findNeighborsForBlock:(Block*)block {
+-(NSMutableSet*)findNeighborsForBlock:(Block*)block {
     int blockIndex = [block.column indexOfObject:block];
-    NSMutableArray *blocksToCheck = [NSMutableArray new];
+    NSMutableSet *blocksToCheck = [NSMutableSet new];
     
     // Check in the same column
     if (blockIndex == 0) {
-        [blocksToCheck addObject:[block.column objectAtIndex:(blockIndex + 1)]];
+        if (block.column.count >= blockIndex + 1) {
+            [blocksToCheck addObject:[block.column objectAtIndex:(blockIndex + 1)]];
+        }
     } else if (blockIndex == [block.column count] - 1) {
-        [blocksToCheck addObject:[block.column objectAtIndex:(blockIndex - 1)]];
+        if (block.column.count >= blockIndex - 1) {
+            [blocksToCheck addObject:[block.column objectAtIndex:(blockIndex - 1)]];
+        }
     } else {
-        [blocksToCheck addObject:[block.column objectAtIndex:(blockIndex + 1)]];
-        [blocksToCheck addObject:[block.column objectAtIndex:(blockIndex - 1)]];
+        if (block.column.count >= blockIndex + 1) {
+            [blocksToCheck addObject:[block.column objectAtIndex:(blockIndex + 1)]];
+        }
+        if ([block.column objectAtIndex:(blockIndex - 1)]) {
+            [blocksToCheck addObject:[block.column objectAtIndex:(blockIndex - 1)]];
+        }
     }
     
     // Check in adjacent column
     int columnIndex = [self.columns indexOfObject:block.column];
     if (columnIndex == 0) {
-        [blocksToCheck addObject:[[self.columns objectAtIndex:(columnIndex + 1) ] objectAtIndex:(blockIndex)]];
+        if ([[self.columns objectAtIndex:(columnIndex + 1) ] objectAtIndex:(blockIndex)]) {
+            [blocksToCheck addObject:[[self.columns objectAtIndex:(columnIndex + 1) ] objectAtIndex:(blockIndex)]];
+        }
     } else if (columnIndex == [self.columns count] - 1) {
-        [blocksToCheck addObject:[[self.columns objectAtIndex:(columnIndex - 1) ] objectAtIndex:(blockIndex)]];
+        if ([[self.columns objectAtIndex:(columnIndex - 1) ] objectAtIndex:(blockIndex)]) {
+            [blocksToCheck addObject:[[self.columns objectAtIndex:(columnIndex - 1) ] objectAtIndex:(blockIndex)]];
+        }
     } else {
-        [blocksToCheck addObject:[[self.columns objectAtIndex:(columnIndex - 1) ] objectAtIndex:(blockIndex)]];
-        [blocksToCheck addObject:[[self.columns objectAtIndex:(columnIndex + 1) ] objectAtIndex:(blockIndex)]];
+        if ([[self.columns objectAtIndex:(columnIndex + 1) ] objectAtIndex:(blockIndex)]) {
+            [blocksToCheck addObject:[[self.columns objectAtIndex:(columnIndex + 1) ] objectAtIndex:(blockIndex)]];
+        }
+        if ([[self.columns objectAtIndex:(columnIndex - 1) ] objectAtIndex:(blockIndex)]) {
+            [blocksToCheck addObject:[[self.columns objectAtIndex:(columnIndex - 1) ] objectAtIndex:(blockIndex)]];
+        }
     }
     
     return blocksToCheck;
 }
 
 -(void)removeBlock:(Block*)block blocksToDelete:(NSMutableSet*)blocksToDelete {
-    [blocksToDelete addObject:block];
-    for (Block* neighbor in [self findNeighborsForBlock:block]) {
+    NSMutableSet *neighbors = [self findNeighborsForBlock:block];
+    for (Block* neighbor in neighbors) {
         if (!CGColorEqualToColor(neighbor.layer.backgroundColor, block.layer.backgroundColor)) {
             continue;
         }
@@ -82,6 +98,7 @@
 -(void)seekAndDestroy:(Block*)block {
     
     NSMutableSet* blocksToDelete = [NSMutableSet new];
+    [blocksToDelete addObject:block];
     [self removeBlock:block blocksToDelete:blocksToDelete];
     
     // destroy all blocks

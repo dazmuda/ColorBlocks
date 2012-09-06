@@ -33,13 +33,13 @@
 		845C410915F808D6004E7859 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		845C410A15F808D6004E7859 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		845C411115F808E4004E7859 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		845C411315F80993004E7859 /* Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Block.h; sourceTree = "<group>"; };
-		845C411415F80993004E7859 /* Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Block.m; sourceTree = "<group>"; };
+		845C411315F80993004E7859 /* Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Block.h; path = ColorBlocks/Block.h; sourceTree = "<group>"; };
+		845C411415F80993004E7859 /* Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Block.m; path = ColorBlocks/Block.m; sourceTree = "<group>"; };
 		845C411915F80AFD004E7859 /* GameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameView.h; sourceTree = "<group>"; };
 		845C411A15F80AFD004E7859 /* GameView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameView.m; sourceTree = "<group>"; };
 		845C412415F81EFF004E7859 /* readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.md; sourceTree = "<group>"; };
-		845C412615F82979004E7859 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
-		845C412715F82979004E7859 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
+		845C412615F82979004E7859 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Game.h; path = ColorBlocks/Game.h; sourceTree = "<group>"; };
+		845C412715F82979004E7859 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Game.m; path = ColorBlocks/Game.m; sourceTree = "<group>"; };
 		845C412915F82F52004E7859 /* GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
 		845C412A15F82F52004E7859 /* GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -62,6 +62,9 @@
 		845C40EB15F808D6004E7859 = {
 			isa = PBXGroup;
 			children = (
+				9AE78E0515F9200900C96A88 /* Controllers */,
+				9AE78E0215F91FE700C96A88 /* Models */,
+				9AE78E0415F91FF700C96A88 /* Views */,
 				845C410015F808D6004E7859 /* ColorBlocks */,
 				845C40F915F808D6004E7859 /* Frameworks */,
 				845C40F715F808D6004E7859 /* Products */,
@@ -92,14 +95,6 @@
 			children = (
 				845C410915F808D6004E7859 /* AppDelegate.h */,
 				845C410A15F808D6004E7859 /* AppDelegate.m */,
-				845C411315F80993004E7859 /* Block.h */,
-				845C411415F80993004E7859 /* Block.m */,
-				845C411915F80AFD004E7859 /* GameView.h */,
-				845C411A15F80AFD004E7859 /* GameView.m */,
-				845C412615F82979004E7859 /* Game.h */,
-				845C412715F82979004E7859 /* Game.m */,
-				845C412915F82F52004E7859 /* GameViewController.h */,
-				845C412A15F82F52004E7859 /* GameViewController.m */,
 				845C410115F808D6004E7859 /* Supporting Files */,
 				845C412415F81EFF004E7859 /* readme.md */,
 			);
@@ -115,6 +110,37 @@
 				845C410815F808D6004E7859 /* ColorBlocks-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9AE78E0215F91FE700C96A88 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				845C411315F80993004E7859 /* Block.h */,
+				845C411415F80993004E7859 /* Block.m */,
+				845C412615F82979004E7859 /* Game.h */,
+				845C412715F82979004E7859 /* Game.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		9AE78E0415F91FF700C96A88 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				845C411915F80AFD004E7859 /* GameView.h */,
+				845C411A15F80AFD004E7859 /* GameView.m */,
+			);
+			name = Views;
+			path = ColorBlocks;
+			sourceTree = "<group>";
+		};
+		9AE78E0515F9200900C96A88 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				845C412915F82F52004E7859 /* GameViewController.h */,
+				845C412A15F82F52004E7859 /* GameViewController.m */,
+			);
+			name = Controllers;
+			path = ColorBlocks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -293,6 +319,7 @@
 				845C411015F808D6004E7859 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -22,13 +22,13 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.currentGame = [Game new];
-        self.currentGame.gvc = self;
-        [self.currentGame initializeGame];
-        
         self.currentView = [GameView new];
         self.currentView.gvc = self;
         self.view = self.currentView;
+        
+        self.currentGame = [Game new];
+        self.currentGame.gvc = self;
+        [self.currentGame initializeGame];
     }
     return self;
 }
