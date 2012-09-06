@@ -39,22 +39,16 @@
     [self setLocationForColumn:column];
 }
 
--(void)setLocationForColumn:(NSMutableArray*)column {
-    
-    //have the old array of locations
-    //and the new array of locations
-    //  CABasicAnimation* spinAnimation = [CABasicAnimation animationWithKeyPath:@"position"];
-    //  spinAnimation.fromValue = [NSValue valueWithCGPoint:CGPointZero];
-    //  spinAnimation.toValue = [NSValue valueWithCGPoint:CGPointMake(400, 400)];
-    //  spinAnimation.duration = 5.0;
-    
-    //  return spinAnimation;
-    
-    
+-(void)setLocationForColumn:(NSMutableArray*)column {    
     for (Block *block in column) {
-        // from block.layer.position to the CGPointMake.
+        CABasicAnimation *fallAnimation = [CABasicAnimation animationWithKeyPath:@"position"];
+        fallAnimation.fromValue = [NSValue valueWithCGPoint:block.layer.position];
         block.layer.position = CGPointMake(([self.columns indexOfObject:column] + 1) * 45, ([column indexOfObject:block] + 1) * 50);
+        fallAnimation.toValue = [NSValue valueWithCGPoint:block.layer.position];
+        fallAnimation.duration = 0.3; //?
         [self.gvc.currentView.layer addSublayer:block.layer];
+        // Animate
+        [block.layer addAnimation:fallAnimation forKey:@"fallAnimation"];
     }
 }
 
@@ -121,7 +115,7 @@
         newBlock.column = block.column;
         [newBlock.column addObject:newBlock];
         [self setLocationForColumn:newBlock.column];
-        [self.gvc.currentView.layer addSublayer:newBlock.layer];
+        [self.gvc.currentView.layer addSublayer:newBlock.layer];        
     }
     [self.gvc.currentView setNeedsDisplay];
 }
