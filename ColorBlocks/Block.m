@@ -12,11 +12,21 @@
 
 -(void)configBlock {
     self.layer = [CALayer layer];
-    self.layer.bounds = CGRectMake(0,0,30,40);
+    self.layer.bounds = CGRectMake(0,0,45,60);
     //iphone is 320x480
     self.layer.position = CGPointMake(160, 480);
+    
     NSArray* colors = [[NSArray alloc] initWithObjects:[UIColor purpleColor], [UIColor blackColor], [UIColor greenColor], [UIColor blueColor], nil];
-    self.layer.backgroundColor = [[colors objectAtIndex:(arc4random() % [colors count])] CGColor];
+    
+    UIImage *ned = [UIImage imageNamed:@"ned-ruggeri.jpg"];
+    UIImage *kush = [UIImage imageNamed:@"kush-patel.jpg"];
+    UIImage *jonathan = [UIImage imageNamed:@"jonathan-nieder.jpg"];
+    UIImage *diana = [UIImage imageNamed:@"diana-zmuda.jpg"];
+    NSArray *faces = [[NSArray alloc] initWithObjects:ned, kush, jonathan, diana, nil];
+   
+    int randInt = arc4random() % [faces count];
+    self.layer.contents = (__bridge id)([[faces objectAtIndex:randInt] CGImage]);
+    self.layer.backgroundColor = [[colors objectAtIndex:randInt] CGColor];
 }
 
 @end

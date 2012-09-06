@@ -19,6 +19,10 @@
 		845C412515F81EFF004E7859 /* readme.md in Resources */ = {isa = PBXBuildFile; fileRef = 845C412415F81EFF004E7859 /* readme.md */; };
 		845C412815F82979004E7859 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 845C412715F82979004E7859 /* Game.m */; };
 		845C412B15F82F52004E7859 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 845C412A15F82F52004E7859 /* GameViewController.m */; };
+		9A7E4EF115F9622E00EB585E /* diana-zmuda.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9A7E4EED15F9622E00EB585E /* diana-zmuda.jpg */; };
+		9A7E4EF215F9622E00EB585E /* jonathan-nieder.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9A7E4EEE15F9622E00EB585E /* jonathan-nieder.jpg */; };
+		9A7E4EF315F9622E00EB585E /* ned-ruggeri.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9A7E4EEF15F9622E00EB585E /* ned-ruggeri.jpg */; };
+		9A7E4EF415F9622E00EB585E /* kush-patel.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9A7E4EF015F9622E00EB585E /* kush-patel.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +46,10 @@
 		845C412715F82979004E7859 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Game.m; path = ColorBlocks/Game.m; sourceTree = "<group>"; };
 		845C412915F82F52004E7859 /* GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
 		845C412A15F82F52004E7859 /* GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
+		9A7E4EED15F9622E00EB585E /* diana-zmuda.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "diana-zmuda.jpg"; sourceTree = "<group>"; };
+		9A7E4EEE15F9622E00EB585E /* jonathan-nieder.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "jonathan-nieder.jpg"; sourceTree = "<group>"; };
+		9A7E4EEF15F9622E00EB585E /* ned-ruggeri.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "ned-ruggeri.jpg"; sourceTree = "<group>"; };
+		9A7E4EF015F9622E00EB585E /* kush-patel.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "kush-patel.jpg"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +70,7 @@
 		845C40EB15F808D6004E7859 = {
 			isa = PBXGroup;
 			children = (
+				9A7E4EF515F9623700EB585E /* Pictures */,
 				9AE78E0515F9200900C96A88 /* Controllers */,
 				9AE78E0215F91FE700C96A88 /* Models */,
 				9AE78E0415F91FF700C96A88 /* Views */,
@@ -110,6 +119,17 @@
 				845C410815F808D6004E7859 /* ColorBlocks-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9A7E4EF515F9623700EB585E /* Pictures */ = {
+			isa = PBXGroup;
+			children = (
+				9A7E4EED15F9622E00EB585E /* diana-zmuda.jpg */,
+				9A7E4EEE15F9622E00EB585E /* jonathan-nieder.jpg */,
+				9A7E4EEF15F9622E00EB585E /* ned-ruggeri.jpg */,
+				9A7E4EF015F9622E00EB585E /* kush-patel.jpg */,
+			);
+			name = Pictures;
 			sourceTree = "<group>";
 		};
 		9AE78E0215F91FE700C96A88 /* Models */ = {
@@ -196,6 +216,10 @@
 			files = (
 				845C410515F808D6004E7859 /* InfoPlist.strings in Resources */,
 				845C412515F81EFF004E7859 /* readme.md in Resources */,
+				9A7E4EF115F9622E00EB585E /* diana-zmuda.jpg in Resources */,
+				9A7E4EF215F9622E00EB585E /* jonathan-nieder.jpg in Resources */,
+				9A7E4EF315F9622E00EB585E /* ned-ruggeri.jpg in Resources */,
+				9A7E4EF415F9622E00EB585E /* kush-patel.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

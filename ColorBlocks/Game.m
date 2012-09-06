@@ -43,7 +43,7 @@
     for (Block *block in column) {
         CABasicAnimation *fallAnimation = [CABasicAnimation animationWithKeyPath:@"position"];
         fallAnimation.fromValue = [NSValue valueWithCGPoint:block.layer.position];
-        block.layer.position = CGPointMake(([self.columns indexOfObject:column] + 1) * 45, ([column indexOfObject:block] + 1) * 50);
+        block.layer.position = CGPointMake(([self.columns indexOfObject:column] + 1) * 47, ([column indexOfObject:block] + 1) * 52);
         fallAnimation.toValue = [NSValue valueWithCGPoint:block.layer.position];
         fallAnimation.duration = 0.3; //?
         [self.gvc.currentView.layer addSublayer:block.layer];
