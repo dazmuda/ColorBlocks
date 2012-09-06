@@ -22,7 +22,8 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-
+        float angle = M_PI;
+        self.layer.transform = CATransform3DMakeRotation(angle, 0, 0.0, 1.0);
         [self setNeedsDisplay];
     }
     return self;

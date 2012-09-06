@@ -14,6 +14,8 @@
 
 @property (strong) NSMutableArray *columns;
 @property (strong) GameViewController *gvc;
+@property (strong) UILabel *scoreLabel;
+@property int score;
 
 -(void)initializeGame;
 -(void)seekAndDestroy:(Block*)block;

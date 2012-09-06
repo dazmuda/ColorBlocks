@@ -20,6 +20,12 @@
         [self.columns addObject:[NSMutableArray new]];
         [self populateColumn:[self.columns objectAtIndex:i]];
     }
+    self.scoreLabel = [[UILabel alloc] initWithFrame:CGRectMake(120, 420, 100, 50)];
+    [self.gvc.currentView addSubview:self.scoreLabel];
+    
+    float angle = M_PI;
+    self.scoreLabel.layer.transform = CATransform3DMakeRotation(angle, 0, 0.0, 1.0);
+    
     [self.gvc.currentView setNeedsDisplay];
 }
 
@@ -30,11 +36,26 @@
         block.column = column;
         [column addObject:block];
     }
+    [self setLocationForColumn:column];
+}
+
+-(void)setLocationForColumn:(NSMutableArray*)column {
+    
+    //have the old array of locations
+    //and the new array of locations
+    //  CABasicAnimation* spinAnimation = [CABasicAnimation animationWithKeyPath:@"position"];
+    //  spinAnimation.fromValue = [NSValue valueWithCGPoint:CGPointZero];
+    //  spinAnimation.toValue = [NSValue valueWithCGPoint:CGPointMake(400, 400)];
+    //  spinAnimation.duration = 5.0;
+    
+    //  return spinAnimation;
+    
+    
     for (Block *block in column) {
+        // from block.layer.position to the CGPointMake.
         block.layer.position = CGPointMake(([self.columns indexOfObject:column] + 1) * 45, ([column indexOfObject:block] + 1) * 50);
         [self.gvc.currentView.layer addSublayer:block.layer];
     }
-
 }
 
 -(NSMutableSet*)findNeighborsForBlock:(Block*)block {
@@ -43,68 +64,64 @@
     
     // Check in the same column
     if (blockIndex == 0) {
-        if (block.column.count >= blockIndex + 1) {
-            [blocksToCheck addObject:[block.column objectAtIndex:(blockIndex + 1)]];
-        }
+        [blocksToCheck addObject:[block.column objectAtIndex:(blockIndex + 1)]];
     } else if (blockIndex == [block.column count] - 1) {
-        if (block.column.count >= blockIndex - 1) {
-            [blocksToCheck addObject:[block.column objectAtIndex:(blockIndex - 1)]];
-        }
+        [blocksToCheck addObject:[block.column objectAtIndex:(blockIndex - 1)]];
     } else {
-        if (block.column.count >= blockIndex + 1) {
-            [blocksToCheck addObject:[block.column objectAtIndex:(blockIndex + 1)]];
-        }
-        if ([block.column objectAtIndex:(blockIndex - 1)]) {
-            [blocksToCheck addObject:[block.column objectAtIndex:(blockIndex - 1)]];
-        }
+        [blocksToCheck addObject:[block.column objectAtIndex:(blockIndex + 1)]];
+        [blocksToCheck addObject:[block.column objectAtIndex:(blockIndex - 1)]];
     }
     
     // Check in adjacent column
     int columnIndex = [self.columns indexOfObject:block.column];
     if (columnIndex == 0) {
-        if ([[self.columns objectAtIndex:(columnIndex + 1) ] objectAtIndex:(blockIndex)]) {
-            [blocksToCheck addObject:[[self.columns objectAtIndex:(columnIndex + 1) ] objectAtIndex:(blockIndex)]];
-        }
+        [blocksToCheck addObject:[[self.columns objectAtIndex:(columnIndex + 1) ] objectAtIndex:(blockIndex)]];
     } else if (columnIndex == [self.columns count] - 1) {
-        if ([[self.columns objectAtIndex:(columnIndex - 1) ] objectAtIndex:(blockIndex)]) {
-            [blocksToCheck addObject:[[self.columns objectAtIndex:(columnIndex - 1) ] objectAtIndex:(blockIndex)]];
-        }
+        [blocksToCheck addObject:[[self.columns objectAtIndex:(columnIndex - 1) ] objectAtIndex:(blockIndex)]];
     } else {
-        if ([[self.columns objectAtIndex:(columnIndex + 1) ] objectAtIndex:(blockIndex)]) {
-            [blocksToCheck addObject:[[self.columns objectAtIndex:(columnIndex + 1) ] objectAtIndex:(blockIndex)]];
-        }
-        if ([[self.columns objectAtIndex:(columnIndex - 1) ] objectAtIndex:(blockIndex)]) {
-            [blocksToCheck addObject:[[self.columns objectAtIndex:(columnIndex - 1) ] objectAtIndex:(blockIndex)]];
-        }
+        [blocksToCheck addObject:[[self.columns objectAtIndex:(columnIndex + 1) ] objectAtIndex:(blockIndex)]];
+        [blocksToCheck addObject:[[self.columns objectAtIndex:(columnIndex - 1) ] objectAtIndex:(blockIndex)]];
     }
     
     return blocksToCheck;
 }
 
--(void)removeBlock:(Block*)block blocksToDelete:(NSMutableSet*)blocksToDelete {
+-(void)createDeletionSetWithBlock:(Block*)block withVisitedBlocks:(NSMutableSet*)visitedBlocks withDeletionSet:(NSMutableSet*)deletionSet{
     NSMutableSet *neighbors = [self findNeighborsForBlock:block];
+    [visitedBlocks addObject:block];
     for (Block* neighbor in neighbors) {
-        if (!CGColorEqualToColor(neighbor.layer.backgroundColor, block.layer.backgroundColor)) {
-            continue;
+        if (CGColorEqualToColor(neighbor.layer.backgroundColor, block.layer.backgroundColor) == YES && [visitedBlocks containsObject:neighbor] == NO) {
+            [deletionSet addObject:neighbor];
+            [self createDeletionSetWithBlock:neighbor withVisitedBlocks:visitedBlocks withDeletionSet:deletionSet];
         }
-        if (![blocksToDelete containsObject:neighbor]) {
-            continue;
-        }
-        [self removeBlock:neighbor blocksToDelete:blocksToDelete];
-            
     }
 }
 
 -(void)seekAndDestroy:(Block*)block {
-    
-    NSMutableSet* blocksToDelete = [NSMutableSet new];
-    [blocksToDelete addObject:block];
-    [self removeBlock:block blocksToDelete:blocksToDelete];
+    NSMutableSet* visitedBlocks = [NSMutableSet new];
+    [visitedBlocks addObject:block];
+    NSMutableSet* deletionSet = [NSMutableSet new];
+    [deletionSet addObject:block];
+    [self createDeletionSetWithBlock:block withVisitedBlocks:visitedBlocks withDeletionSet:deletionSet];
     
     // destroy all blocks
-    for (Block *block in blocksToDelete) {
+    if ([deletionSet count] < 2) {
+        return;
+    }
+    for (Block *block in deletionSet) {
+        // delete block
         [block.column removeObject:block];
         [block.layer removeFromSuperlayer];
+        self.score += 1;
+        self.scoreLabel.text = [NSString stringWithFormat:@"%d", self.score];
+        
+        // new block
+        Block *newBlock = [Block new];
+        [newBlock configBlock];
+        newBlock.column = block.column;
+        [newBlock.column addObject:newBlock];
+        [self setLocationForColumn:newBlock.column];
+        [self.gvc.currentView.layer addSublayer:newBlock.layer];
     }
     [self.gvc.currentView setNeedsDisplay];
 }
