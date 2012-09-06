@@ -17,6 +17,8 @@
 		845C411515F80993004E7859 /* Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 845C411415F80993004E7859 /* Block.m */; };
 		845C411B15F80AFD004E7859 /* GameView.m in Sources */ = {isa = PBXBuildFile; fileRef = 845C411A15F80AFD004E7859 /* GameView.m */; };
 		845C412515F81EFF004E7859 /* readme.md in Resources */ = {isa = PBXBuildFile; fileRef = 845C412415F81EFF004E7859 /* readme.md */; };
+		845C412815F82979004E7859 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 845C412715F82979004E7859 /* Game.m */; };
+		845C412B15F82F52004E7859 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 845C412A15F82F52004E7859 /* GameViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,10 @@
 		845C411915F80AFD004E7859 /* GameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameView.h; sourceTree = "<group>"; };
 		845C411A15F80AFD004E7859 /* GameView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameView.m; sourceTree = "<group>"; };
 		845C412415F81EFF004E7859 /* readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.md; sourceTree = "<group>"; };
+		845C412615F82979004E7859 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
+		845C412715F82979004E7859 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
+		845C412915F82F52004E7859 /* GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
+		845C412A15F82F52004E7859 /* GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +96,10 @@
 				845C411415F80993004E7859 /* Block.m */,
 				845C411915F80AFD004E7859 /* GameView.h */,
 				845C411A15F80AFD004E7859 /* GameView.m */,
+				845C412615F82979004E7859 /* Game.h */,
+				845C412715F82979004E7859 /* Game.m */,
+				845C412915F82F52004E7859 /* GameViewController.h */,
+				845C412A15F82F52004E7859 /* GameViewController.m */,
 				845C410115F808D6004E7859 /* Supporting Files */,
 				845C412415F81EFF004E7859 /* readme.md */,
 			);
@@ -174,6 +184,8 @@
 				845C410B15F808D6004E7859 /* AppDelegate.m in Sources */,
 				845C411515F80993004E7859 /* Block.m in Sources */,
 				845C411B15F80AFD004E7859 /* GameView.m in Sources */,
+				845C412815F82979004E7859 /* Game.m in Sources */,
+				845C412B15F82F52004E7859 /* GameViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

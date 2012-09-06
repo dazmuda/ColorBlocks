@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "GameView.h"
+#import "GameViewController.h"
 
 @implementation AppDelegate
 
@@ -15,8 +16,7 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    self.window.rootViewController = [UIViewController new];
-    self.window.rootViewController.view = [[GameView  alloc] initWithFrame: self.window.bounds];
+    self.window.rootViewController = [GameViewController new];
     
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     self.window.backgroundColor = [UIColor whiteColor];
