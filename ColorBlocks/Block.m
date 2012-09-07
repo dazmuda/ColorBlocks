@@ -14,7 +14,7 @@
     self.layer = [CALayer layer];
     self.layer.bounds = CGRectMake(0,0,45,60);
     //iphone is 320x480
-    self.layer.position = CGPointMake(160, 480);
+    self.layer.position = CGPointMake(160, 0);
     
     NSArray* colors = [[NSArray alloc] initWithObjects:[UIColor purpleColor], [UIColor blackColor], [UIColor greenColor], [UIColor blueColor], nil];
     
@@ -26,6 +26,9 @@
    
     int randInt = arc4random() % [faces count];
     self.layer.contents = (__bridge id)([[faces objectAtIndex:randInt] CGImage]);
+    // float angle = M_PI;
+    //self.layer.transform = CATransform3DMakeRotation(angle, 0, 0.0, 1.0);
+    
     self.layer.backgroundColor = [[colors objectAtIndex:randInt] CGColor];
 }
 
